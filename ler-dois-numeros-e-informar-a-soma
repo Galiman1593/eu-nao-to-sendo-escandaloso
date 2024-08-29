@@ -1,0 +1,7 @@
+# ler dois numeros e informar a soma
+numero1 = int(input("informe um numero: "))
+numero2 = int(input("informe outro numero: "))
+
+# + (soma) - (subtração) * (multiplicação) / (divisão)
+soma = numero1 + numero2
+print(f'esse numero {numero1} mais esse numero {numero2} dá {soma}')
