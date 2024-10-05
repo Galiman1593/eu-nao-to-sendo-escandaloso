@@ -7,21 +7,21 @@ class Curso(models.Model):
 
     def __str__(self):
         return self.nome
-    
+
+
 class Alunos(models.Model):
     nome = models.CharField(max_length=100)
-    telefone =  models.CharField(max_length=20)
-    email = models.EmailField
+    telefone = models.CharField(max_length=20)
+    email = models.EmailField(null=True)
 
     def __str__(self):
         return self.nome
-    
+
 
 class Professores(models.Model):
     nome = models.CharField(max_length=100)
-    email = models.EmailField
-    matricula =  models.CharField(max_length=5)
+    email = models.EmailField(null=True)
+    matricula = models.CharField(max_length=5)
 
     def __str__(self):
         return self.nome
-    

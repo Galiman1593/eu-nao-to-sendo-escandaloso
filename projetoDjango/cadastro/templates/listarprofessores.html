@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content%}
+    <h2>Lista de professores</h2>
+    <a href="#" class="btn btn-primary">
+        Cadastrar novo professor
+    </a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in Professores %}
+            <tr>
+                <td>
+                    {{ p.nome }}
+                </td>
+                <td>
+                    {{ p.email }}
+                </td>
+                <td>
+                    Alterar Excluir
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

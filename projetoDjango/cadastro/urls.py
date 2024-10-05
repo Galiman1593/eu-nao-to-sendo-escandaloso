@@ -6,4 +6,16 @@ urlpatterns = [
     path('segundo', views.segundo, name='segundo'),
     path('pagina', views.pagina, name='pagina'),
     path('mensagem', views.mensagem, name='mensagem'),
+
+    #cursos
+    path('listarcursos', views.listarcursos, name='listarcursos'),
+
+    #alunos
+    path('listaralunos', views.listaralunos, name='listaralunos'),
+    
+    #professores
+    path('listarprofessores', views.listarprofessores, name='listarprofessores'),
 ]
+
+
+
