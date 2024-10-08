@@ -9,6 +9,7 @@ urlpatterns = [
 
     #cursos
     path('listarcursos', views.listarcursos, name='listarcursos'),
+    path('incluircursos',views.incluircursos, name='incluircurso'),
 
     #alunos
     path('listaralunos', views.listaralunos, name='listaralunos'),
