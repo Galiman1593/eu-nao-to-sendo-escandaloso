@@ -21,7 +21,7 @@
                 <td>
                     {{ c.valor }}
                 </td>
-                <td>Alterar Excluir</td>
+                <td> <a href= "{% url 'alterarcurso' c.id %}" class="btn btn-secondary"> Alterar </a> Excluir</td>
             </tr>
             {% endfor %}
         </tbody>

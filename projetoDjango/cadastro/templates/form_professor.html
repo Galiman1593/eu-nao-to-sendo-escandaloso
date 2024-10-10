@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+    <h2>cadastro do professor</h2>
+    <form method="post">
+        {% bootstrap_form formulario %}
+        {% csrf_token %}
+        <input type="submit" class="btn btn-primary" value="Gravar" />
+        <input type="reset" class="btn btn-secondary" value="limpar" />
+
+    </form>
+
+{% endblock %}

@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 
-from cadastro.forms import CursoForm
+from cadastro.forms import AlunoForm, CursoForm, ProfForm
 from .models import Curso, Alunos, Professores
 
 # Create your views here.
@@ -29,14 +29,39 @@ def incluircursos(request):
             form.save()
             return redirect('listarcursos')
     form = CursoForm()
-    return render(request, "form_curso.html", {'formulario':form})    
+    return render(request, "form_curso.html", {'formulario':form}) 
+
+def alterarcurso(request, codigo):
+    c = Curso.objects.get(id=codigo)
+    form = CursoForm(instance=c)
+    return render(request, 'form_curso.html', {'formulario': form})
 
 #alunos
 def listaralunos(request):
     alunos = Alunos.objects.order_by('nome')
     return render(request, 'listaralunos.html', {'alunos': alunos})
 
+def incluiralunos(request):
+    if request.method == 'POST':
+        form = AlunoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('listaralunos')
+    form = AlunoForm()
+    return render(request, "form_aluno.html", {'formulario':form})    
+
+    
+
 #Professores
 def listarprofessores(request):
     professores = Professores.objects.order_by('nome')
     return render(request, 'listarprofessores.html', {'Professores': professores})
+
+def incluirprofessor(request):
+    if request.method == 'POST':
+        form = ProfForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('listarprofessores')
+    form = ProfForm()
+    return render(request, "form_professor.html", {'formulario':form}) 
