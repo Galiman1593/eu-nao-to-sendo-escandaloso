@@ -1,3 +1,4 @@
+from django import forms
 from django.forms import ModelForm
 from cadastro.models import Alunos, Curso, Professores, Turma
 
@@ -19,6 +20,18 @@ class ProfForm(ModelForm):
 class TurmaForm(ModelForm):
     class Meta:
         model = Turma
-        fields = '__all__'        
+        fields = '__all__'
+    dataInicio = forms.DateTimeField(
+        label ='Data de início', widget=forms.DateTimeInput(
+            format='%Y-%m-%d %H:%M:%S', attrs={ 'type': 'datetime-local'  }
+        ), input_formats=('%Y-%m-%d %H:%M:%S')  
+    )   
+    dataTermino = forms.DateTimeField(
+        label ='Data de Termino', widget=forms.DateTimeInput(
+            format='%Y-%m-%d %H:%M:%S', attrs={ 'type': 'datetime-local'  }
+        ), input_formats=('%Y-%m-%d %H:%M:%S')  
+    )   
+    
+    
                 
         

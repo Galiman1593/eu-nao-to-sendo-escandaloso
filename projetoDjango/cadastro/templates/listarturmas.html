@@ -19,7 +19,10 @@
                 <td>{{ t.dataInicio | date:"d/m/Y" }}</td>
                 <td>{{ t.dataTermino | date:"d/m/Y" }}</td>
                 <td>{{t.dataInicio | date:"H:i"}} ás {{t.dataTermino | date:"H:i"}}</td>
-                <td>alterar excluir</td>
+                <td>
+                    <a href= "{% url 'alterarturma' t.id %}" class= "btn btn-secondary"> Alterar </a>
+                    <a href= "{% url 'excluirturma' t.id %}" class= "btn btn-danger">Excluir</a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

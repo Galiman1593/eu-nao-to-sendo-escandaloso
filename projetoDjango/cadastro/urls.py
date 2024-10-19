@@ -16,14 +16,20 @@ urlpatterns = [
     #alunos
     path('listaralunos', views.listaralunos, name='listaralunos'),
     path('incluiraluno', views.incluiralunos, name='incluiralunos'),
+    path('alteraralunos/<int:codigo>', views.alteraralunos, name='alteraralunos'),
+    path('excluiralunos/<int:codigo>', views.excluiralunos, name='excluiralunos'),
     
     #professores
     path('listarprofessores', views.listarprofessores, name='listarprofessores'),
     path('incluirprofessor', views.incluirprofessor, name='incluirprofessor'),
+    path('alterarprofessor/<int:codigo>', views.alterarprofessor, name='alterarprofessor'),
+     path('excluirprofessor/<int:codigo>', views.excluirprofessor, name='excluirprofessor'),
 
     #turmas
     path('listarturmas', views.listarturmas, name='listarturmas'),
     path('incluirturma', views.incluirturma, name='incluirturma'),
+    path('alterarturma/<int:codigo>', views.alterarturma, name='alterarturma'),
+    path('excluirturma/<int:codigo>', views.excluirturma, name='excluirturma'),
 ]
 
 
