@@ -3,6 +3,7 @@ from django.http import HttpResponse
 
 from cadastro.forms import AlunoForm, CursoForm, ProfForm, TurmaForm
 from .models import Curso, Alunos, Professores, Turma
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -26,7 +27,11 @@ def incluircursos(request):
     if request.method == 'POST':
         form = CursoForm(request.POST)
         if form.is_valid():
-            form.save()
+            try:
+                form.save()
+                messages.info(request, "Novo curso cadastrado")
+            except:
+                messages.error(request, "Não foi possivel cadastrar")    
             return redirect('listarcursos')
     form = CursoForm()
     return render(request, "form_curso.html", {'formulario':form}) 
@@ -36,7 +41,11 @@ def alterarcurso(request, codigo):
     if request.method == 'POST':
         form = CursoForm(request.POST, instance=c)
         if form.is_valid():
-            form.save()
+            try:
+                form.save()
+                messages.info(request, "Alterado com sucesso.")
+            except:
+                messages.error(request, "Não foi possivel alterar")    
             return redirect('listarcursos')
    
     form = CursoForm(instance=c)
@@ -44,7 +53,11 @@ def alterarcurso(request, codigo):
 
 def excluircurso(request, codigo):
     c = Curso.objects.get(id=codigo)
-    c.delete()
+    try:
+        c.delete()
+        messages.info(request, "Excluído com sucesso.")
+    except:
+        messages.error(request, "Não é possível excluir.")
     return redirect('listarcursos')
 
 #alunos
@@ -56,7 +69,11 @@ def incluiralunos(request):
     if request.method == 'POST':
         form = AlunoForm(request.POST)
         if form.is_valid():
-            form.save()
+            try:
+                form.save() 
+                messages.info(request, "Novo aluno cadastrado")
+            except:
+                messages.error(request, "Não foi possivel cadastrar")    
             return redirect('listaralunos')
     form = AlunoForm()
     return render(request, "form_aluno.html", {'formulario':form})   
@@ -66,7 +83,11 @@ def alteraralunos(request, codigo):
     if request.method == 'POST':
         form = AlunoForm(request.POST, instance=a)
         if form.is_valid():
-            form.save()
+            try:
+                form.save()
+                messages.info(request, "Alterado com sucesso.")
+            except:
+                messages.error(request, "Não foi possivel alterar")
             return redirect('listaralunos')
    
     form = AlunoForm(instance=a)
@@ -74,7 +95,11 @@ def alteraralunos(request, codigo):
 
 def excluiralunos(request, codigo):
     a = Alunos.objects.get(id=codigo)
-    a.delete()
+    try:
+        a.delete()
+        messages.info(request, "excluido com sucesso")
+    except:
+        messages.error(request, "Não foi possivel excluir")    
     return redirect('listaralunos')
 
 
@@ -88,7 +113,11 @@ def incluirturma(request):
     if request.method == 'POST':
         form = TurmaForm(request.POST)
         if form.is_valid():
-            form.save()
+            try:
+                form.save() 
+                messages.info(request, "Nova turma cadastrado")
+            except:
+                messages.error(request, "Não foi possivel cadastrar")
             return redirect('listarturmas')
     form = TurmaForm()
     return render(request, 'form_turma.html', {'formulario': form})
@@ -98,7 +127,11 @@ def alterarturma(request, codigo):
     if request.method == 'POST':
         form = TurmaForm(request.POST, instance=t)
         if form.is_valid():
-            form.save()
+            try:
+                form.save()
+                messages.info(request, "Alterado com sucesso.")
+            except:
+                messages.error(request, "Não foi possivel alterar")
             return redirect('listarturmas')
 
     form = TurmaForm(instance=t)
@@ -106,7 +139,11 @@ def alterarturma(request, codigo):
 
 def excluirturma(request, codigo):
     t = Turma.objects.get(id=codigo)
-    t.delete()
+    try:
+        t.delete()
+        messages.info(request, "Excluido com sucesso")
+    except:
+        messages.error(request, "Não foi possivel excluir")    
     return redirect('listarturmas')
 
 
@@ -121,7 +158,11 @@ def incluirprofessor(request):
     if request.method == 'POST':
         form = ProfForm(request.POST)
         if form.is_valid():
-            form.save()
+            try:
+                form.save() 
+                messages.info(request, "Novo professor cadastrado")
+            except:
+                messages.error(request, "Não foi possivel cadastrar")
             return redirect('listarprofessores')
     form = ProfForm()
     return render(request, "form_professor.html", {'formulario':form}) 
@@ -131,7 +172,11 @@ def alterarprofessor(request, codigo):
     if request.method == 'POST':
         form = ProfForm(request.POST, instance=p)
         if form.is_valid():
-            form.save()
+            try:
+                form.save()
+                messages.info(request, "Alterado com sucesso.")
+            except:
+                messages.error(request, "Não foi possivel alterar")
             return redirect('listarprofessores')
    
     form = ProfForm(instance=p)
@@ -139,6 +184,10 @@ def alterarprofessor(request, codigo):
 
 def excluirprofessor(request, codigo):
     p = Professores.objects.get(id=codigo)
-    p.delete()
+    try:
+        p.delete()
+        messages.info(request, "Excluido com sucesso")
+    except:
+        messages.error(request, "Não foi possivel esxcluir")    
     return redirect('listarprofessores')
 
